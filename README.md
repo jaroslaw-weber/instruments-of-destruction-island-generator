@@ -1,5 +1,14 @@
 # about this project
 
-Generating random maps for game "Instruments of Destruction". There are not that many maps in the workshop so decided to make a simple tool to generate new maps randomly.
+Generating random maps for game "Instruments of Destruction".
+
+Just go here and follow instructions:
+
+https://jaroslaw-weber.github.io/instruments-of-destruction-island-generator/
+
+
+# about the game
+
+You can find the game itself here
 
 https://store.steampowered.com/app/1428100/Instruments_of_Destruction/
