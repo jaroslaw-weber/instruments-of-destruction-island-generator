@@ -12,7 +12,7 @@ function FileSave() {
     const blob = new Blob([JSON.stringify(newIsland, null, 2)], {
       type: "application/json",
     });
-    saveAs(blob, v4() + ".iodl");
+    saveAs(blob, "random_" + v4().substring(0, 6) + ".iodl");
   };
 
   return (

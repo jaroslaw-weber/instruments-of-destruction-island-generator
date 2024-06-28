@@ -2,12 +2,12 @@ import { random, sample } from "lodash";
 import { Structure } from "./types";
 import { structureDb } from "./structures";
 
-export function getRandomStructures(count: number) {
-  const result: Structure[] = new Array(count).fill(0).map(getRandomStructure);
+export function getRandomStructures(structureCount: number, islandSize:number) {
+  const result: Structure[] = new Array(structureCount).fill(0).map(x=>getRandomStructure(islandSize));
   return result;
 }
 
-function getRandomStructure() {
+function getRandomStructure(islandSize:number) {
   const structore = sample(structureDb)!;
   const structureType = structore.name;
   const id = random(10000, 100000);
@@ -17,9 +17,9 @@ function getRandomStructure() {
     },
     moveable: false,
     position: {
-      x: random(-400, 400),
-      y: 0,
-      z: random(-400, 400),
+      x: random(-islandSize, islandSize),
+      y: -16, //for some reason the ground is not 0
+      z: random(-islandSize, islandSize),
     },
     y_rot: 0,
     uid: 15,

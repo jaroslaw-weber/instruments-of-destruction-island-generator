@@ -28,8 +28,9 @@ export default function Home() {
       <p className="font-bold text-lg">Import / Export</p>
       <p>
         First, load any map here to load terrain. Currently only support flat
-        maps.
+        maps. Maps are saved in folder:
       </p>
+      <pre className="mockup-code pl-4">C:\Users\USERNAME\AppData\LocalLow\Radiangames\Instruments\levels</pre>
       <div className="flex justify-evenly items-center gap-6">
         <FileUpload />
         <FileSave />
