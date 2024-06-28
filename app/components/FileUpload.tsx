@@ -22,11 +22,11 @@ function FileUpload({}) {
   };
 
   return (
-    <label className="flex flex-1 w-full h-full">
-      <span className="btn rounded-r-none ">Upload Island File</span>
+    <label className="flex-1 w-full h-full">
+      <span className="btn rounded-r-none w-full ">Upload Island File</span>
       <input
         type="file"
-        className="file-input file-input-bordered [&::file-selector-button]:hidden p-2.5 rounded-l-none"
+        className="file-input file-input-bordered w-0 hidden p-2.5 rounded-l-none"
         onChange={handleFileUpload}
       />
     </label>
