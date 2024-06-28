@@ -1,7 +1,7 @@
 import { useAtom } from "jotai";
 import { islandAtom, structuresAtom } from "../state";
 import { Structure } from "../types";
-import { uniq} from "lodash";
+import { uniq } from "lodash";
 
 function FileUpload({}) {
   const [_structures, setStructures] = useAtom(structuresAtom);
@@ -11,18 +11,24 @@ function FileUpload({}) {
     const reader = new FileReader();
     reader.onload = (e) => {
       const island = JSON.parse(e.target.result);
-	  const structures: Structure[] =island.m_structures
+      const structures: Structure[] = island.m_structures;
       setStructures(structures);
-	  setIsland(island);
-	  console.log(JSON.stringify(uniq(structures.map((s) => s.esr_type.bi_name))))
+      setIsland(island);
+      console.log(
+        JSON.stringify(uniq(structures.map((s) => s.esr_type.bi_name)))
+      );
     };
     reader.readAsText(file);
   };
 
   return (
-    <label className="btn btn-primary">
-      Upload File
-      <input type="file" className="hidden" onChange={handleFileUpload} />
+    <label className="flex flex-1 w-full h-full">
+      <span className="btn rounded-r-none ">Upload Island File</span>
+      <input
+        type="file"
+        className="file-input file-input-bordered [&::file-selector-button]:hidden p-2.5 rounded-l-none"
+        onChange={handleFileUpload}
+      />
     </label>
   );
 }

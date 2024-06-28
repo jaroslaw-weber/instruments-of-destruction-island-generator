@@ -6,16 +6,18 @@ import { v4 } from "uuid";
 function FileSave() {
   const [structures] = useAtom(structuresAtom);
   const [island] = useAtom(islandAtom);
-  const newIsland = {...island, m_structures: structures };
+  const newIsland = { ...island, m_structures: structures };
 
   const handleFileSave = () => {
-    const blob = new Blob([JSON.stringify(newIsland, null, 2)], { type: "application/json" });
-    saveAs(blob, v4()+".iodl");
+    const blob = new Blob([JSON.stringify(newIsland, null, 2)], {
+      type: "application/json",
+    });
+    saveAs(blob, v4() + ".iodl");
   };
 
   return (
-    <button className="btn btn-secondary mt-2" onClick={handleFileSave}>
-      Save File
+    <button className="btn flex-1 w-full h-full " onClick={handleFileSave}>
+      save island to file
     </button>
   );
 }

@@ -1,12 +1,10 @@
 "use client";
 import { useAtom } from "jotai";
-import Image from "next/image";
 import { structuresAtom } from "./state";
 import FileUpload from "./components/FileUpload";
 import { getRandomStructures } from "./generate";
 import FileSave from "./components/FileSave";
 import IslandPreview from "./components/IslandPreview";
-import StructureGenerator from "./components/StructureGenerator";
 
 export default function Home() {
   const [structures, setStructures] = useAtom(structuresAtom);
@@ -20,11 +18,6 @@ export default function Home() {
 
   return (
     <div className="p-4 space-y-4 max-w-3xl h-20 mx-auto">
-      <p className="font-bold text-lg">Island Generator</p>
-      <p>
-        Generate random islands with structures for Instruments of Destruction
-        game
-      </p>
       <p className="font-bold text-lg">Import / Export</p>
       <p>
         First, load any map here to load terrain. Currently only support flat
@@ -34,7 +27,20 @@ export default function Home() {
         <FileUpload />
         <FileSave />
       </div>
-      <StructureGenerator />
+      <div>
+        <p className="font-bold text-lg">Structures</p>
+        <div className="flex space-x-4">
+          <button className="btn btn-primary" onClick={() => setStructures([])}>
+            clear
+          </button>
+          <button
+            className="btn btn-secondary"
+            onClick={() => setStructures(getRandomStructures(60))}
+          >
+            randomize
+          </button>
+        </div>
+      </div>
       <p className="font-bold text-lg">Island Preview</p>
       <p>Below you can see how the island will looks like:</p>
       <IslandPreview />
