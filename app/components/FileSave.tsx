@@ -1,12 +1,13 @@
 import { useAtom } from "jotai";
-import { islandAtom, structuresAtom } from "../state";
+import { islandAtom, structuresAtom, terrainAtom } from "../state";
 import { saveAs } from "file-saver";
 import { v4 } from "uuid";
 
 function FileSave() {
   const [structures] = useAtom(structuresAtom);
+  const [terrain] = useAtom(terrainAtom);
   const [island] = useAtom(islandAtom);
-  const newIsland = { ...island, m_structures: structures };
+  const newIsland = { ...island, m_structures: structures,/* m_loops: terrain */};
 
   const handleFileSave = () => {
     const blob = new Blob([JSON.stringify(newIsland, null, 2)], {

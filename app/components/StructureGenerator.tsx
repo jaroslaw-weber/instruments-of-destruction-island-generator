@@ -5,15 +5,19 @@ import {
   islandSizeAtom,
   structureSpacingAtom,
   structuresAtom,
+  terrainAtom,
 } from "../state";
 import React from "react";
 import { getRandomStructures } from "../generate";
+import _ from "lodash";
+import { generateTerrainConfig } from "../terrain";
 
 function StructureGenerator({}) {
   const [structures, setStructures] = useAtom(structuresAtom);
   const [buildingCount, setBuildingCount] = useAtom(buildingCountAtom);
   const [islandSize, setIslandSize] = useAtom(islandSizeAtom);
   const [structureSpacing, setStructureSpacing] = useAtom(structureSpacingAtom);
+  const [terrain, setTerrain] = useAtom(terrainAtom);
 
   return (
     <div className="flex flex-col gap-2">
@@ -22,11 +26,13 @@ function StructureGenerator({}) {
         {" "}
         <button
           className="btn btn-primary"
-          onClick={() =>
+          onClick={() => {
             setStructures(
               getRandomStructures(buildingCount, islandSize, structureSpacing)
-            )
-          }
+            );
+            setTerrain(_.times(10).map(() => generateTerrainConfig()));
+            console.log("terrain", terrain);
+          }}
         >
           generate!
         </button>
