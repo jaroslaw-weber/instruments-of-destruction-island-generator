@@ -17,7 +17,7 @@ export default function Home() {
   }));
 
   return (
-    <div className="p-4 space-y-4 max-w-3xl h-20 mx-auto">
+    <div className="p-4 gap-8 max-w-3xl h-20 mx-auto">
       <p className="font-bold text-lg">Import / Export</p>
       <p>
         First, load any map here to load terrain. Currently only support flat
@@ -42,7 +42,7 @@ export default function Home() {
         </div>
       </div>
       <p className="font-bold text-lg">Island Preview</p>
-      <p>Below you can see how the island will looks like:</p>
+      <p className="py-6">Below you can see how the island will looks like:</p>
       <IslandPreview />
       <p className="font-bold text-lg">File Preview</p>
       <pre className="mockup-code whitespace-pre-wrap p-6">
