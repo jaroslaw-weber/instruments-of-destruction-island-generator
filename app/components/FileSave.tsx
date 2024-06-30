@@ -7,7 +7,7 @@ function FileSave() {
   const [structures] = useAtom(structuresAtom);
   const [terrain] = useAtom(terrainAtom);
   const [island] = useAtom(islandAtom);
-  const newIsland = { ...island, m_structures: structures,/* m_loops: terrain */};
+  const newIsland = { ...island, m_structures: structures, m_loops: terrain };
 
   const handleFileSave = () => {
     const blob = new Blob([JSON.stringify(newIsland, null, 2)], {
