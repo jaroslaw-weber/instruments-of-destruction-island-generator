@@ -1,6 +1,11 @@
 "use client";
 import { useAtom } from "jotai";
-import { buildingCountAtom, islandSizeAtom, structureSpacingAtom, structuresAtom } from "./state";
+import {
+  buildingCountAtom,
+  islandSizeAtom,
+  structureSpacingAtom,
+  structuresAtom,
+} from "./state";
 import FileUpload from "./components/FileUpload";
 import { getRandomStructures } from "./generate";
 import FileSave from "./components/FileSave";
@@ -8,7 +13,7 @@ import IslandPreview from "./components/IslandPreview";
 
 export default function Home() {
   const [structures, setStructures] = useAtom(structuresAtom);
-  const [ islandSize, setIslandSize] = useAtom(islandSizeAtom);
+  const [islandSize, setIslandSize] = useAtom(islandSizeAtom);
   const [buildingCount, setBuildingCount] = useAtom(buildingCountAtom);
   const [structureSpacing, setStructureSpacing] = useAtom(structureSpacingAtom);
 
@@ -21,15 +26,6 @@ export default function Home() {
 
   return (
     <div className="p-4 gap-8 max-w-3xl h-20 mx-auto">
-      <p className="font-bold text-lg">Import / Export</p>
-      <p>
-        First, load any map here to load terrain. Currently only support flat
-        maps.
-      </p>
-      <div className="flex justify-evenly items-center gap-6">
-        <FileUpload />
-        <FileSave />
-      </div>
       <div>
         <p className="font-bold text-lg">Structures</p>
         <div className="flex space-x-4">
@@ -38,10 +34,19 @@ export default function Home() {
           </button>
           <button
             className="btn btn-secondary"
-            onClick={() => setStructures(getRandomStructures(buildingCount, islandSize, structureSpacing))}
+            onClick={() =>
+              setStructures(
+                getRandomStructures(buildingCount, islandSize, structureSpacing)
+              )
+            }
           >
             randomize
           </button>
+        </div>{" "}
+        <p className="font-bold text-lg">Import / Export</p>
+        <div className="flex justify-evenly items-center gap-6">
+          <FileUpload />
+          <FileSave />
         </div>
       </div>
       <p className="font-bold text-lg">Island Preview</p>

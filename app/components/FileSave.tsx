@@ -8,7 +8,7 @@ function FileSave() {
   const [terrain] = useAtom(terrainAtom);
   const [island] = useAtom(islandAtom);
   const base = require("../basic.json");
-  const newIsland = { ...base, ...island, m_structures: structures, m_loops: terrain };
+  const newIsland = { ...base, ...island, m_structures: structures, m_loops: terrain, m_entities: [],m_joint_used:[] };
 
   const handleFileSave = () => {
     const blob = new Blob([JSON.stringify(newIsland, null, 2)], {

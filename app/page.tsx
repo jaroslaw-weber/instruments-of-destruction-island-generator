@@ -20,20 +20,17 @@ export default function Home() {
 
   return (
     <div className="p-4 my-8 space-y-4 max-w-6xl h-20 mx-auto">
-      
       <p className="font-bold text-3xl text-center">Island Generator</p>
-    <p className="text-center pb-8">
-      Generate random islands with structures for Instruments of
-      Destruction game
-    </p>
+      <p className="text-center pb-8">
+        Generate random islands with structures for Instruments of Destruction
+        game
+      </p>
       <div className="flex flex-col md:flex-row gap-16">
         <div className="flex-1">
-          
+          <StructureGenerator />
+          <div className="mt-8"></div>{" "}
           <p className="font-bold text-lg">Import / Export</p>
-          <p>
-            First, load any map here to load terrain. Currently only support
-            flat maps. Maps are saved in folder:
-          </p>
+          <p>Maps are saved in folder:</p>
           <pre className="mockup-code pl-4 my-8">
             C:\Users\USERNAME\AppData\LocalLow\Radiangames\Instruments\levels
           </pre>
@@ -41,10 +38,8 @@ export default function Home() {
             <FileUpload />
             <FileSave />
           </div>
-          <div className="mt-8" >
-          <StructureGenerator /></div>
         </div>
-        <div  className="flex-grow">
+        <div className="flex-grow">
           <p className="font-bold text-lg">Island Preview</p>
           <p>Below you can see how the island will looks like:</p>
           <IslandPreview />
