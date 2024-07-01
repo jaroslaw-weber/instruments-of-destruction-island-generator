@@ -30,7 +30,7 @@ function StructureGenerator({}) {
             setStructures(
               getRandomStructures(buildingCount, islandSize, structureSpacing)
             );
-            setTerrain(_.times(5).map((i) => generateTerrainConfig("ditto",i)));
+            setTerrain(_.times(5).map((i) => generateTerrainConfig(i)));
             console.log("terrain", terrain);
           }}
         >

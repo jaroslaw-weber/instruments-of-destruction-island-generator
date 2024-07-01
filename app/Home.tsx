@@ -1,6 +1,6 @@
 "use client";
 import { useAtom } from "jotai";
-import { structuresAtom } from "./state";
+import { buildingCountAtom, islandSizeAtom, structureSpacingAtom, structuresAtom } from "./state";
 import FileUpload from "./components/FileUpload";
 import { getRandomStructures } from "./generate";
 import FileSave from "./components/FileSave";
@@ -8,6 +8,9 @@ import IslandPreview from "./components/IslandPreview";
 
 export default function Home() {
   const [structures, setStructures] = useAtom(structuresAtom);
+  const [ islandSize, setIslandSize] = useAtom(islandSizeAtom);
+  const [buildingCount, setBuildingCount] = useAtom(buildingCountAtom);
+  const [structureSpacing, setStructureSpacing] = useAtom(structureSpacingAtom);
 
   const simplifiedStructures = structures.map((s) => ({
     position: s.position,
@@ -35,7 +38,7 @@ export default function Home() {
           </button>
           <button
             className="btn btn-secondary"
-            onClick={() => setStructures(getRandomStructures(60))}
+            onClick={() => setStructures(getRandomStructures(buildingCount, islandSize, structureSpacing))}
           >
             randomize
           </button>
