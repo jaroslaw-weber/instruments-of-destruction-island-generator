@@ -9,8 +9,8 @@ import {
 } from "../state";
 import React from "react";
 import { getRandomStructures } from "../generate";
-import _ from "lodash";
-import { generateTerrainConfig } from "../terrain";
+import _, { cloneDeep } from "lodash";
+import { generateTerrainConfig, generateTerrainConfigV2 } from "../terrain";
 
 function StructureGenerator({}) {
   const [structures, setStructures] = useAtom(structuresAtom);
@@ -30,7 +30,8 @@ function StructureGenerator({}) {
             setStructures(
               getRandomStructures(buildingCount, islandSize, structureSpacing)
             );
-            setTerrain(_.times(5).map((i) => generateTerrainConfig(i)));
+            
+            setTerrain(generateTerrainConfigV2(5));
             console.log("terrain", terrain);
           }}
         >

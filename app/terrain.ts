@@ -1,4 +1,4 @@
-import _ from "lodash";
+import _, { cloneDeep } from "lodash";
 type Point3D = {
   x: number;
   y: number;
@@ -69,6 +69,61 @@ function generateDittoShapePoints(
   return points;
 }
 
+function generateHandles(points: Point3D[]): any[] {
+  // Handles are points used to control the shape of the curve.
+  // We will create handles by offsetting the original points.
+
+  return points.map((point, i, arr) => {
+    // Create handles slightly offset from the original points.
+    const offset = 5; // You can adjust this value as needed.
+
+    // Handle before the point (control point)
+    const prevHandle = {
+      x: point.x - offset,
+      y: point.y,
+      z: point.z - offset,
+    };
+
+    // Handle after the point (control point)
+    const nextHandle = {
+      x: point.x + offset,
+      y: point.y,
+      z: point.z + offset,
+    };
+
+    return {
+      prevHandle,
+      point,
+      nextHandle,
+    };
+  });
+}
+
+export function generateTerrainConfigV2(count: number): TerrainConfig[]{
+  let preset:{m_loops: TerrainConfig[]} = require("./basic.json");
+  
+  const maxDeviation = 400; // Maximum deviation from the current point position
+
+  for (const loop of preset.m_loops) {
+
+    // Generate deviations within a limited range
+    const deviationX = _.random(-maxDeviation, maxDeviation);
+    const deviationZ = _.random(-maxDeviation, maxDeviation);
+
+    for (const p of loop.m_points) {
+      // Apply constrained deviations
+      p.x += deviationX;
+      p.z += deviationZ;
+    }
+
+    for (const p of loop.m_smooth_points) {
+      // Apply constrained deviations
+      p.x += deviationX;
+      p.z += deviationZ;
+    }
+  }
+  return preset.m_loops;
+}
 
 
 export function generateTerrainConfig(idx: number): TerrainConfig {
@@ -98,15 +153,15 @@ export function generateTerrainConfig(idx: number): TerrainConfig {
     m_path_side_mask: 0,
     m_negate_range: 0,
     m_smooth_points: smoothPoints,
-    m_smooth_handles: [],
+    m_smooth_handles: generateHandles(smoothPoints),
     m_smoothing_steps: _.random(1, 5),
     m_points: points,
-    m_handles: [],
+    m_handles: generateHandles(points),
     m_pts_disabled: _.times(pointsCount, () => false),
     m_point_info: [], //todo?
     m_loop_step: 0,
     m_bottom_fan_dist: 0,
-    m_extrude_bottom: 3,
+    m_extrude_bottom: 30,
     m_extrude_profile: [
       {
         x: -1.0,
